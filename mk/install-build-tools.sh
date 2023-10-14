@@ -21,3 +21,4 @@ wget https://github.com/bytecodealliance/wasmtime/releases/download/v13.0.0/wasm
 mkdir -p wasmtime
 sha256sum --check sha256sums
 tar --strip-components=1 --directory=wasmtime -xf downloads/wasmtime-v13.0.0-x86_64-linux.tar.xz
+git update-index --chmod=+x wasmtime/wasmtime
