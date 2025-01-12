@@ -17,8 +17,12 @@
 set -eux -o pipefail
 IFS=$'\n\t'
 
-wget https://github.com/bytecodealliance/wasmtime/releases/download/v13.0.0/wasmtime-v13.0.0-x86_64-linux.tar.xz -P downloads
+version=v28.0.0
+wget https://github.com/bytecodealliance/wasmtime/releases/download/${version}/wasmtime-${version}-x86_64-linux.tar.xz -P downloads
 mkdir -p wasmtime
 sha256sum --check sha256sums
-tar --strip-components=1 --directory=wasmtime -xf downloads/wasmtime-v13.0.0-x86_64-linux.tar.xz
+tar --strip-components=1 --directory=wasmtime -xf \
+  downloads/wasmtime-${version}-x86_64-linux.tar.xz \
+  wasmtime-${version}-x86_64-linux/{README.md,wasmtime}
+git add wasmtime/{README.md,wasmtime}
 git update-index --chmod=+x wasmtime/wasmtime

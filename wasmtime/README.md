@@ -34,6 +34,7 @@ script:
 ```sh
 curl https://wasmtime.dev/install.sh -sSf | bash
 ```
+This script installs into `$WASMTIME_HOME` (defaults to `$HOME/.wasmtime`), and executable is placed in `$WASMTIME_HOME/bin`.
 
 Windows or otherwise interested users can download installers and
 binaries directly from the [GitHub
@@ -54,8 +55,8 @@ fn main() {
 and compile/run it with:
 
 ```sh
-$ rustup target add wasm32-wasi
-$ rustc hello.rs --target wasm32-wasi
+$ rustup target add wasm32-wasip1
+$ rustc hello.rs --target wasm32-wasip1
 $ wasmtime hello.wasm
 Hello, world!
 ```
@@ -108,7 +109,7 @@ command may not install the target for the correct copy of Rust.)
 [Secure]: https://docs.wasmtime.dev/security.html
 [Configurable]: https://docs.rs/wasmtime/latest/wasmtime/struct.Config.html
 [WASI]: https://docs.rs/wasmtime-wasi/latest/wasmtime_wasi/
-[Standards Compliant]: https://docs.wasmtime.dev/stability-wasm-proposals-support.html
+[Standards Compliant]: https://docs.wasmtime.dev/stability-tiers.html
 
 ## Language Support
 
@@ -131,7 +132,7 @@ Languages supported by the community:
 * **Perl** - the [`Wasm` Perl package's `Wasm::Wasmtime`]
 
 [Rust]: https://bytecodealliance.github.io/wasmtime/lang-rust.html
-[C]: https://bytecodealliance.github.io/wasmtime/examples-c-embed.html
+[C]: https://bytecodealliance.github.io/wasmtime/lang-c.html
 [`wasmtime` crate]: https://crates.io/crates/wasmtime
 [c-headers]: https://bytecodealliance.github.io/wasmtime/c-api/
 [Python]: https://bytecodealliance.github.io/wasmtime/lang-python.html
