@@ -36,5 +36,5 @@ mkdir -p wasmtime
 tar --strip-components=1 --directory=wasmtime -xf \
   downloads/wasmtime-${version}-x86_64-linux.tar.xz \
   wasmtime-${version}-x86_64-linux/{README.md,wasmtime}
-git update-index --chmod=+x qemu/wasmtime
+git update-index --chmod=+x qemu/bin/qemu-*
 git update-index --chmod=+x wasmtime/wasmtime
