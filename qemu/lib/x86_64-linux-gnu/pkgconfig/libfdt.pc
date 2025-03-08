@@ -1,0 +1,1 @@
+/mnt/c/Users/b/p/ring-toolchain/qemu-build/build/meson-private/libfdt.pc

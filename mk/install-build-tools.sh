@@ -17,12 +17,24 @@
 set -eux -o pipefail
 IFS=$'\n\t'
 
+wget https://download.qemu.org/qemu-9.2.2.tar.xz -P downloads
+
 version=v28.0.0
 wget https://github.com/bytecodealliance/wasmtime/releases/download/${version}/wasmtime-${version}-x86_64-linux.tar.xz -P downloads
-mkdir -p wasmtime
+
 sha256sum --check sha256sums
+
+mkdir -p qemu-build
+tar --strip-components=1 --directory=qemu-build     -xf downloads/qemu-9.2.2.tar.xz
+# sudo apt install bison flex libglib2.0-dev python3-tomli
+(cd qemu-build; ./configure && make)
+mkdir -p qemu/bin
+cp qemu-build/build/qemu-bundle/usr/local/bin/{qemu-aarch64*,qemu-arm*,qemu-i386,qemu-mips*,qemu-ppc*,qemu-riscv*,qemu-s390x,qemu-x86_64,qemu-xtensa*} qemu/bin/
+cp -r qemu-build/build/qemu-bundle/usr/local/lib qemu/
+
+mkdir -p wasmtime
 tar --strip-components=1 --directory=wasmtime -xf \
   downloads/wasmtime-${version}-x86_64-linux.tar.xz \
   wasmtime-${version}-x86_64-linux/{README.md,wasmtime}
-git add wasmtime/{README.md,wasmtime}
+git update-index --chmod=+x qemu/wasmtime
 git update-index --chmod=+x wasmtime/wasmtime
